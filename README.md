@@ -144,6 +144,38 @@ For linux: If you would like to uninstall and switch back to bash as the default
 ```bash
 chsh -s /bin/bash $(whoami)
 ```
+## Plugins
+![Powerlevel10k Performance](
+  https://raw.githubusercontent.com/romkatv/powerlevel10k-media/master/performance.gif)
+
+Note how the effect of every command is instantly reflected by the very next prompt.
+
+| Command                       | Prompt Indicator | Meaning                                                               |
+|-------------------------------|:----------------:|----------------------------------------------------------------------:|
+| `timew start hack linux`      | `⌚ hack linux`  | time tracking enabled in [timewarrior](https://timewarrior.net/)      |
+| `touch x y`                   | `?2`             | 2 untracked files in the Git repo                                     |
+| `rm COPYING`                  | `!1`             | 1 unstaged change in the Git repo                                     |
+| `echo 3.7.3 >.python-version` | `🐍 3.7.3`       | the current python version in [pyenv](https://github.com/pyenv/pyenv) |
+
+By default based on your operating system the preinstalled plugins:
+
+Linux
+```bash
+plugins=(zsh-syntax-highlighting zsh-completions git kubectl aws docker history)
+```
+
+Mac
+```bash
+plugins=(zsh-syntax-highlighting zsh-completions git kubectl aws brew vscode docker history osx)
+```
+
+you can customize the plugins by adding to the correct line (see above example) within ~/.zshrc
+for the list of the pre installed plugins you can visit it here repo [oh-my-zsh wiki](https://github.com/ohmyzsh/ohmyzsh/wiki/Plugins)
+
+Alternatively you can run:
+```bash
+ls ~/.oh-my-zsh/plugins
+```
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
