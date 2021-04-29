@@ -14,7 +14,7 @@ install_zsh () {
     if [ "$OSTYPE" == "linux-gnu" ]; then
         if [ -n "apt" ]; then
             sleep 1
-            echo -n "Pulling Updates..."
+            echo"Pulling Updates..."
 
             sudo apt-get update -y
             #verify command ran without errors
@@ -28,7 +28,7 @@ install_zsh () {
                 echo "Not sure what happened" && exit
             fi
 
-            echo -n "Installing ZSH..."
+            echo "Installing ZSH..."
             sleep 2
 
             sudo apt-get install zsh -y
@@ -129,27 +129,27 @@ install_oh_my_zsh () {
     # Install git
     isntall_git(){
         if [[ "$OSTYPE" == "linux-gnu"* ]]; then
-            sudo apt-get install git -y || echo -n "error" && echo "Installed"
+            sudo apt-get install git -y || echo "error" && echo "Installed"
         elif [[ "$OSTYPE" == "darwin"* ]]; then
-            brew install git
+            brew install git || echo "error" && echo "Installed"
         fi
     }
 
     # Install curl
     isntall_curl(){
         if [[ "$OSTYPE" == "linux-gnu"* ]]; then
-            sudo apt-get install curl -y || echo -n "error" && echo "Installed"
+            sudo apt-get install curl -y || echo "error" && echo "Installed"
         elif [[ "$OSTYPE" == "darwin"* ]]; then
-            brew install curl
+            brew install curl || echo "error" && echo "Installed"
         fi
     }
 
     echo "${BLUE}Cloning Oh My Zsh...${RESET}"
 
     command_exists git || {
-        fmt_error "git is not installed"
+        fmt_error "git is not installed "
         while true; do
-            read -p "Hello $username would like to install git? y/n: " yn
+            read -p "Would like to install git? y/n: " yn
             case $yn in
                 [Yy]* ) isntall_git; break;;
                 [Nn]* ) exit;;
@@ -159,9 +159,9 @@ install_oh_my_zsh () {
     }
 
     command_exists curl || {
-        fmt_error "curl is not installed"
+        fmt_error "curl is not installed "
         while true; do
-            read -p "Hello $username would like to install curl? y/n: " yn
+            read -p "Would like to install curl? y/n: " yn
             case $yn in
                 [Yy]* ) isntall_curl; break;;
                 [Nn]* ) exit;;
@@ -376,7 +376,7 @@ EOF
 EOF
 
     cat <<EOF
-• Installing plugins / themes now!
+    • Installing plugins / themes now!
 
 EOF
     printf %s "$RESET"
