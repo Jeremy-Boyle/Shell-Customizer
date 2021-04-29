@@ -9,9 +9,10 @@ echo "
 echo "starting.... "
 
 username=$(whoami)
-
+command_exists() {
+        command -v "$@" >/dev/null 2>&1
 install_zsh () {
-    if [ "$OSTYPE" == "linux-gnu" ]; then
+    if [[ "$OSTYPE" == "linux-gnu"* ]]; then
         if [ -n "apt" ]; then
             sleep 1
             echo"Pulling Updates..."
@@ -48,20 +49,60 @@ install_zsh () {
     fi
 }
 
-if [ -n "$BASH_VERSION" ]; then
-    # assume Bash
-    if [[ "$OSTYPE" != "darwin"* ]];then    
-        while true; do
-            echo ""
-            read -p "Hello $username would like to install zsh? y/n: " yn
-            case $yn in
-                [Yy]* ) install_zsh; break;;
-                [Nn]* ) exit;;
-                * ) echo "Please answer yes or no.";;
-            esac
-        done
-    fi
-fi
+install_vim() {
+    if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+        if [ -n "apt" ]; then
+            sleep 1
+            echo"Pulling Updates..."
+
+            sudo apt-get update -y
+            #verify command ran without errors
+            if [ $? != 0 ]; then
+                echo "Failed to update packages, check connection !! exiting" && exit
+                elif [ $? == 1 ]; then
+                    echo "Success !"
+                    sleep 2
+                    clear
+                else
+                echo "Not sure what happened" && exit
+            fi
+
+            echo "Installing VIM , Git, Curl..."
+            sleep 2
+
+            sudo apt-get install vim git curl -y
+            #verify command ran without errors
+            if [ $? != 0 ]; then
+                echo "Failed to install vim and git, check connection !! exiting" && exit
+                elif [ $? == 1 ]; then
+                    echo "Success !"
+                    sleep 2
+                    clear
+                else
+                echo "Not sure what happened" && exit
+            fi
+            sleep 2
+        fi
+    elif [[ "$OSTYPE" == "darwin"* ]]
+        brew install curl || echo "error" && echo "Installed Curl"
+        brew install git || echo "error" && echo "Installed Git"
+        brew install vim || echo "error" && echo "Installed Vim"
+        sleep 2
+        clear
+    if
+    echo "Making dirs.."
+    mkdir ~/.vim ~/.vim/colors ~/.vim/autoload
+    echo "Downloading Theme files.."
+    curl https://raw.githubusercontent.com/joshdick/onedark.vim/master/colors/onedark.vim -o ~/.vim/colors/onedark.vim
+    curl https://raw.githubusercontent.com/Jeremy-Boyle/Shell-Customizer/main/.vimrc -o ~/.vimrc
+    echo "Installing Syntax plugins"
+    git clone --depth 1 https://github.com/sheerun/vim-polyglot ~/.vim/pack/plugins/start/vim-polyglot
+    echo "Installing Command Themes"
+    git clone https://github.com/vim-airline/vim-airline ~/.vim/pack/plugins/start/vim-airline
+    echo "Downloading last files!"
+    curl https://raw.githubusercontent.com/joshdick/onedark.vim/master/autoload/onedark.vim -o ~/.vim/autoload/onedark.vim
+    curl https://raw.githubusercontent.com/joshdick/onedark.vim/master/autoload/airline/themes/onedark.vim -o ~/.vim/pack/plugins/start/vim-airline/autoload/airline/themes/onedark.vim
+}
 
 install_oh_my_zsh () {
 
@@ -356,7 +397,6 @@ EOF
         else
         echo "You'll need to remove it if you want to reinstall."
         fi
-        exit 1
     fi
 
     setup_ohmyzsh
@@ -413,6 +453,31 @@ EOF
 }
     main "$@"
 }
+
+if [ -n "$BASH_VERSION" ]; then
+    # assume Bash
+    if [[ "$OSTYPE" != "darwin"* ]];then    
+        while true; do
+            echo ""
+            read -p "Hello $username would like to install zsh? y/n: " yn
+            case $yn in
+                [Yy]* ) install_zsh; break;;
+                [Nn]* ) break;;
+                * ) echo "Please answer yes or no.";;
+            esac
+        done
+    fi
+fi
+
+while true; do
+    echo ""
+    read -p "Would like to install vim syntax and themes? y/n: " yn
+    case $yn in
+        [Yy]* ) install_vim; break;;
+        [Nn]* ) break;;
+        * ) echo "Please answer yes or no.";;
+    esac
+done
 
 if [ -n "echo $ZSH_VERSION" ]; then
     # assume Bash
