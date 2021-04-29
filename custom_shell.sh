@@ -83,7 +83,7 @@ install_vim() {
             fi
             sleep 2
         fi
-    elif [[ "$OSTYPE" == "darwin"* ]]
+    elif [[ "$OSTYPE" == "darwin"* ]];then
         brew install curl || echo "error" && echo "Installed Curl"
         brew install git || echo "error" && echo "Installed Git"
         brew install vim || echo "error" && echo "Installed Vim"
