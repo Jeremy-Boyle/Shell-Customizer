@@ -50,7 +50,7 @@ install_zsh () {
 install_vim () {
     if [ -n "apt" ]; then
         sleep 1
-        echo"Pulling Updates..."
+        echo "Pulling Updates..."
 
         sudo apt-get update -y
         #verify command ran without errors
