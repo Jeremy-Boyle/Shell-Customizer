@@ -8,13 +8,6 @@ echo -n"
 |______________________|"
 echo -n "starting.... "
 
-if [ "$OSTYPE" == "linux-gnu" ]; then
-    echo -n "Detected linux"
-
-elif [ "$OSTYPE" == "darwin" ]; then
-    echo -n "Detected Mac OSX"
-fi
-
 username=$(whoami)
 
 install_zsh () {
@@ -141,7 +134,7 @@ install_oh_my_zsh () {
     }
 
     # Install curl
-    isntal+l_curl(){
+    isntall_curl(){
         if [[ "$OSTYPE" == "linux-gnu"* ]]; then
             sudo apt-get install curl -y || echo -n "error" && echo "Installed"
         elif [[ "$OSTYPE" == "darwin"* ]]; then
@@ -174,11 +167,13 @@ install_oh_my_zsh () {
             esac
         done
     }
-
-    command_exists brew || {
-        fmt_error "brew is not installed, please install it first"
-        exit 1
-    }
+    
+    if [[ "$OSTYPE" == "darwin"* ]]; then
+        command_exists brew || {
+            fmt_error "brew is not installed, please install it first"
+            exit 1
+        }
+    fi
 
     ostype=$(uname)
     if [ -z "${ostype%CYGWIN*}" ] && git --version | grep -q msysgit; then
