@@ -127,9 +127,9 @@ Use curl to run the script.
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/Jeremy-Boyle/Shell-Customizer/main/custom_shell.sh)"
 ```
 
-If you are on a linux machine and your current shell is NOT zsh you will need admin rights to install zsh. Otherwise use the command above
+If you are on a linux machine and your current shell is NOT zsh you will need admin rights to install zsh. The command is the same just enter your credentials when it asks
 ```bash
-sudo sh -c "$(curl -fsSL https://raw.githubusercontent.com/Jeremy-Boyle/Shell-Customizer/main/custom_shell.sh)"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/Jeremy-Boyle/Shell-Customizer/main/custom_shell.sh)"
 ```
 ## Uninstallation
 For whatever reason you want to remove this run the command bellow if you would like to keep using zsh 
