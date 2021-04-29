@@ -11,44 +11,54 @@ echo "starting.... "
 username=$(whoami)
 install_zsh () {
     if [[ "$OSTYPE" == "linux-gnu"* ]]; then
-        if [ -n "apt-get" ]; then
-            sleep 1
-            echo "Pulling Updates..."
+        sleep 1
+        echo "Pulling Updates..."
 
-            sudo apt-get update -y
-            #verify command ran without errors
-            if [ $? != 0 ]; then
-                echo "Failed to update packages, check connection !! exiting" && exit
-                elif [ $? == 1 ]; then
-                    echo "Success !"
-                    sleep 2
-                    clear
-                else
-                echo "Not sure what happened" && exit
-            fi
-
-            echo "Installing ZSH..."
-            sleep 2
-
-            sudo apt-get install zsh -y
-            #verify command ran without errors
-            if [ $? != 0 ]; then
-                echo "Failed to install zsh, check connection !! exiting" && exit
-                elif [ $? == 1 ]; then
-                    echo "Success !"
-                    sleep 2
-                    clear
-                else
-                echo "Not sure what happened" && exit
-            fi
-            touch ~/.zshrc
-            sleep 2
+        sudo apt-get update -y
+        #verify command ran without errors
+        if [ $? != 0 ]; then
+            echo "Failed to update packages, check connection !! exiting" && exit
+            elif [ $? == 1 ]; then
+                echo "Success !"
+                sleep 2
+                clear
+            else
+            echo "Not sure what happened" && exit
         fi
+
+        echo "Installing ZSH..."
+        sleep 2
+
+        sudo apt-get install zsh -y
+        #verify command ran without errors
+        if [ $? != 0 ]; then
+            echo "Failed to install zsh, check connection !! exiting" && exit
+            elif [ $? == 1 ]; then
+                echo "Success !"
+                sleep 2
+                clear
+            else
+            echo "Not sure what happened" && exit
+        fi
+        touch ~/.zshrc
+        sleep 2
     fi
 }
 
 install_vim () {
-    if [ -n "apt-get" ]; then
+    if [[ "$OSTYPE" == "darwin"* ]]; then
+        if [ -n "curl" ]; then
+            brew install curl || echo "error" && echo "Installed Curl"
+        fi
+        if [ -n "git" ]; then
+            brew install git || echo "error" && echo "Installed Git"
+        fi
+        if [ -n "vim" ]; then
+            brew install vim || echo "error" && echo "Installed Vim"
+        fi
+        sleep 2
+        clear
+    else
         sleep 1
         echo "Pulling Updates..."
 
@@ -59,12 +69,6 @@ install_vim () {
 
         sudo apt-get install vim git curl -y || echo "error" && echo "Installed Git and Curl"
         sleep 2
-    elif [[ "$OSTYPE" == "darwin"* ]]; then
-        brew install curl || echo "error" && echo "Installed Curl"
-        brew install git || echo "error" && echo "Installed Git"
-        brew install vim || echo "error" && echo "Installed Vim"
-        sleep 2
-        clear
     fi
     echo "Making dirs.."
     mkdir ~/.vim ~/.vim/colors ~/.vim/autoload
