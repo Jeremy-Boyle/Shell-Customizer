@@ -36,7 +36,7 @@ If you are using a different terminal, proceed with manual font installation. ðŸ
 Download the hacked font file:
 
 - [AFCSoftwareFactory-Regular.ttf](
-    https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Regular.ttf)
+    https://github.com/Jeremy-Boyle/Shell-Customizer/raw/main/AFCSoftwareFactory-Regular.otf)
 
 Double-click on each file and click "Install". This will make `MesloLGS NF` font available to all
 applications on your system. Configure your terminal to use this font:
