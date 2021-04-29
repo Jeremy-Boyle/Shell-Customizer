@@ -67,17 +67,8 @@ install_vim () {
         echo "Installing VIM , Git, Curl..."
         sleep 2
 
-        sudo apt-get install vim git curl -y
+        sudo apt-get install vim git curl -y || echo "error" && echo "Installed Git and Curl"
         #verify command ran without errors
-        if [ $? != 0 ]; then
-            echo "Failed to install vim and git, check connection !! exiting" && exit
-            elif [ $? == 1 ]; then
-                echo "Success !"
-                sleep 2
-                clear
-            else
-            echo "Not sure what happened" && exit
-        fi
         sleep 2
     elif [[ "$OSTYPE" == "darwin"* ]]; then
         brew install curl || echo "error" && echo "Installed Curl"
