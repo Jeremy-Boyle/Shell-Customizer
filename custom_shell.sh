@@ -89,7 +89,7 @@ install_vim() {
         brew install vim || echo "error" && echo "Installed Vim"
         sleep 2
         clear
-    if
+    fi
     echo "Making dirs.."
     mkdir ~/.vim ~/.vim/colors ~/.vim/autoload
     echo "Downloading Theme files.."
