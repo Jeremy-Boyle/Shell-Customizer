@@ -1,6 +1,16 @@
 # Shell Customizer 
 
-This shell script automates the install for zsh with oshmyzsh and themeing
+This shell script automates the install for zsh with oshmyzsh and theming
+
+End product if you install the font and default theme
+
+![Powerlevel10k](
+https://i.imgur.com/G5lQGDD.png)
+
+Examples of the customization
+
+![Powerlevel10k](
+https://raw.githubusercontent.com/romkatv/powerlevel10k-media/master/prompt-styles-high-contrast.png)
 ## Required
 Debian based Linux, more flavors will be added at a later date
 ```bash
@@ -109,6 +119,7 @@ PR to expand the list!_
 
 
 ## Installation
+Look above to install the custom font to get icons working properly and set for your terminal before you move on
 
 Use curl to run the script.
 
@@ -119,6 +130,19 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/Jeremy-Boyle/Shell-Customi
 If you are on a linux machine and your current shell is NOT zsh you will need admin rights to install zsh. Otherwise use the command above
 ```bash
 sudo sh -c "$(curl -fsSL https://raw.githubusercontent.com/Jeremy-Boyle/Shell-Customizer/main/custom_shell.sh)"
+```
+## Uninstallation
+For whatever reason you want to remove this run the command bellow if you would like to keep using zsh 
+
+```bash
+rm -rf ~/.zshrc ~/.oh-my-zsh/
+mv ~/.zshrc.pre-oh-my-zsh ~/.zshrc
+exec zsh
+```
+
+For linux: If you would like to uninstall and switch back to bash as the default shell you will need admin rights with the commands below
+```bash
+chsh -s /bin/bash $(whoami)
 ```
 
 ## Contributing
