@@ -11,7 +11,7 @@ echo "starting.... "
 username=$(whoami)
 install_zsh () {
     if [[ "$OSTYPE" == "linux-gnu"* ]]; then
-        if [ -n "apt" ]; then
+        if [ -n "apt-get" ]; then
             sleep 1
             echo "Pulling Updates..."
 
@@ -48,7 +48,7 @@ install_zsh () {
 }
 
 install_vim () {
-    if [ -n "apt" ]; then
+    if [ -n "apt-get" ]; then
         sleep 1
         echo "Pulling Updates..."
 
