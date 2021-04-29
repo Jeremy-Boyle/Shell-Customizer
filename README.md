@@ -43,70 +43,70 @@ applications on your system. Configure your terminal to use this font:
 
 - **iTerm2**: Type `p10k configure` and answer `Yes` when asked whether to install
   *Meslo Nerd Font*. Alternatively, open *iTerm2 → Preferences → Profiles → Text* and set *Font* to
-  `MesloLGS NF`.
+  `AFC Font`.
 - **Apple Terminal**: Open *Terminal → Preferences → Profiles → Text*, click *Change* under *Font*
-  and select `MesloLGS NF` family.
+  and select `AFC Font` family.
 - **Hyper**: Open *Hyper → Edit → Preferences* and change the value of `fontFamily` under
-  `module.exports.config` to `MesloLGS NF`.
+  `module.exports.config` to `AFC Font`.
 - **Visual Studio Code**: Open *File → Preferences → Settings*, enter
-  `terminal.integrated.fontFamily` in the search box and set the value to `MesloLGS NF`.
+  `terminal.integrated.fontFamily` in the search box and set the value to `AFC Font`.
 - **GNOME Terminal** (the default Ubuntu terminal): Open *Terminal → Preferences* and click on the
   selected profile under *Profiles*. Check *Custom font* under *Text Appearance* and select
-  `MesloLGS NF Regular`.
+  `AFC Font Regular`.
 - **Konsole**: Open *Settings → Edit Current Profile → Appearance*, click *Select Font* and select
-  `MesloLGS NF Regular`.
+  `AFC Font Regular`.
 - **Tilix**: Open *Tilix → Preferences* and click on the selected profile under *Profiles*. Check
-  *Custom font* under *Text Appearance* and select `MesloLGS NF Regular`.
+  *Custom font* under *Text Appearance* and select `AFC Font`.
 - **Windows Console Host** (the old thing): Click the icon in the top left corner, then
-  *Properties → Font* and set *Font* to `MesloLGS NF`.
+  *Properties → Font* and set *Font* to `AFC Font`.
 - **Microsoft Terminal** (the new thing): Open *Settings* (`Ctrl+,`), search for `fontFace` and set
-  value to `MesloLGS NF` for every profile.
+  value to `AFC Font` for every profile.
 - **IntelliJ** (and other IDEs by Jet Brains): Open *IDE → Edit → Preferences → Editor →
   Color Scheme → Console Font*. Select *Use console font instead of the default* and set the font
-  name to `MesloLGS NF`.
+  name to `AFC Font`.
 - **Termux**: Type `p10k configure` and answer `Yes` when asked whether to install
   *Meslo Nerd Font*.
 - **Blink**: Type `config`, go to *Appearance*, tap *Add a new font*, tap *Open Gallery*, select
-  *MesloLGS NF.css*, tap *import* and type `exit` in the home view to reload the font.
-- **Terminus**: Open *Settings → Appearance* and set *Font* to `MesloLGS NF`.
+  *AFC Font.css*, tap *import* and type `exit` in the home view to reload the font.
+- **Terminus**: Open *Settings → Appearance* and set *Font* to `AFC Font`.
 - **Terminator**: Open *Preferences* using the context menu. Under *Profiles* select the *General*
   tab (should be selected already), uncheck *Use the system fixed width font* (if not already)
-  and select `MesloLGS NF Regular`. Exit the Preferences dialog by clicking *Close*.
+  and select `AFC Font`. Exit the Preferences dialog by clicking *Close*.
 - **Guake**: Right Click on an open terminal and open *Preferences*. Under *Appearance*
-  tab, uncheck *Use the system fixed width font* (if not already) and select `MesloLGS NF Regular`.
+  tab, uncheck *Use the system fixed width font* (if not already) and select `AFC Font`.
   Exit the Preferences dialog by clicking *Close*.
 - **MobaXterm**: Open *Settings* → *Configuration* → *Terminal* → (under *Terminal look and feel*)
-  and change *Font* to `MesloLGS NF`.
+  and change *Font* to `AFC Font`.
 - **Asbrú Connection Manager**: Open *Preferences → Local Shell Options → Look and Feel*, enable
-  *Use these personal options* and change *Font:* under *Terminal UI* to `MesloLGS NF Regular`.
+  *Use these personal options* and change *Font:* under *Terminal UI* to `AFC Font`.
   To change the font for the remote host connections, go to *Preferences → Terminal Options →
-  Look and Feel* and change *Font:* under *Terminal UI* to `MesloLGS NF Regular`.
+  Look and Feel* and change *Font:* under *Terminal UI* to `AFC Font`.
 - **WSLtty**: Right click on an open terminal and then on *Options*. In the *Text* section, under
-  *Font*, click *"Select..."* and set Font to `MesloLGS NF Regular`.
+  *Font*, click *"Select..."* and set Font to `AFC Font`.
 - **Alacritty**: Create or open `~/.config/alacritty/alacritty.yml` and add the following section
   to it:
   ```yaml
   font:
     normal:
-      family: "MesloLGS NF"
+      family: "AFC Font"
   ```
  - **Kitty**: Create or open `~/.config/kitty/kitty.conf` and add the following line to it:
    ```text
-   font_family MesloLGS NF
+   font_family AFC Font
    ```
    Restart Kitty by closing all sessions and opening a new session.
 - **WezTerm**: Create or open `$HOME/.config/wezterm/wezterm.lua` and add the following:
   ```lua
   local wezterm = require 'wezterm';
   return {
-      font = wezterm.font("MesloLGS NF"),
+      font = wezterm.font("AFC Font"),
   }
   ```
   If the file already exists, only add the line with the font to the existing return. 
   Also add the first line if it is not already present.
 - **urxvt**: Create or open `~/.Xresources` and add the following line to it:
    ```text
-   URxvt.font: xft:MesloLGS NF:size=11
+   URxvt.font: xft:AFC Font:size=11
    ```
   You can adjust the font size to your preference. After changing the configuration use `xrdb ~/.Xresources` to reload the config. 
   The new config is applied for all new terminals.
