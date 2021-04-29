@@ -9,8 +9,6 @@ echo "
 echo "starting.... "
 
 username=$(whoami)
-command_exists() {
-        command -v "$@" >/dev/null 2>&1
 install_zsh () {
     if [[ "$OSTYPE" == "linux-gnu"* ]]; then
         if [ -n "apt" ]; then
@@ -49,7 +47,7 @@ install_zsh () {
     fi
 }
 
-install_vim() {
+install_vim () {
     if [[ "$OSTYPE" == "linux-gnu"* ]]; then
         if [ -n "apt" ]; then
             sleep 1
