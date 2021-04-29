@@ -1,12 +1,12 @@
 
-echo -n" 
+echo " 
  ______________________
 |  __________________  |
 | | Shell Customizer | |
 | |  By Jeremy Boyle | |
 | |__________________| |
 |______________________|"
-echo -n "starting.... "
+echo "starting.... "
 
 username=$(whoami)
 
@@ -50,15 +50,17 @@ install_zsh () {
 
 if [ -n "$BASH_VERSION" ]; then
     # assume Bash
-    while true; do
-        echo ""
-        read -p "Hello $username would like to install zsh? y/n: " yn
-        case $yn in
-            [Yy]* ) install_zsh; break;;
-            [Nn]* ) exit;;
-            * ) echo "Please answer yes or no.";;
-        esac
-    done
+    if [[ "$OSTYPE" != "darwin"* ]];then    
+        while true; do
+            echo ""
+            read -p "Hello $username would like to install zsh? y/n: " yn
+            case $yn in
+                [Yy]* ) install_zsh; break;;
+                [Nn]* ) exit;;
+                * ) echo "Please answer yes or no.";;
+            esac
+        done
+    fi
 fi
 
 install_oh_my_zsh () {
@@ -330,7 +332,7 @@ main() {
 
     setup_color
 
-    if ! command_exists zsh; then
+    if [! command_exists zsh]; then
         echo "${YELLOW}Zsh is not installed.${RESET} Please install zsh first."
         exit 1
     fi
@@ -379,10 +381,10 @@ EOF
 EOF
     printf %s "$RESET"
     #Check if the os is mac and add
-    if [ "$OSTYPE" == "darwin"]; then
-        sed -i 's/(git)/(zsh-syntax-highlighting zsh-completions git kubectl aws brew docker history osx)/g' .zshrc
+    if [[ "$OSTYPE" == "darwin"* ]]; then
+        sed -i '' -e 's/(git)/(zsh-syntax-highlighting zsh-completions git kubectl aws brew docker history osx)/g' ~/.zshrc
     else
-        sed -i 's/(git)/(zsh-syntax-highlighting zsh-completions git kubectl aws docker history)/g' .zshrc
+        sed -i 's/(git)/(zsh-syntax-highlighting zsh-completions git kubectl aws docker history)/g' ~/.zshrc
     fi
 
     echo "${BLUE}Cloning powerlevel10k${RESET}"
@@ -393,13 +395,16 @@ EOF
     clear
     echo "${BLUE}Cloning zsh-completions${RESET}"
     git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-completions
-
-    sed -i 's/robbyrussell/powerlevel10k\/powerlevel10k/g' .zshrc
+    if [[ "$OSTYPE" == "darwin"* ]]; then
+        sed -i '' -e 's/robbyrussell/powerlevel10k\/powerlevel10k/g' ~/.zshrc
+    else
+        sed -i 's/robbyrussell/powerlevel10k\/powerlevel10k/g' ~/.zshrc
+    fi
     while true; do
         clear
         read -p "Would like to install the sfw theme? y/n: " yn
         case $yn in
-            [Yy]* ) curl https://raw.githubusercontent.com/Jeremy-Boyle/Shell-Customizer/main/.p10k.zsh -o .p10k.zsh && echo "[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh" >> .zshrc ; break;;
+            [Yy]* ) curl https://raw.githubusercontent.com/Jeremy-Boyle/Shell-Customizer/main/.p10k.zsh -o .p10k.zsh && echo "[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh" >> ~/.zshrc ; break;;
             [Nn]* ) echo "Okay ill let you set it up!"; break;;
             * ) echo "Please answer yes or no.";;
         esac
