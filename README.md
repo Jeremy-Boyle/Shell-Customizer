@@ -38,7 +38,7 @@ Download the hacked font file:
 - [AFCSoftwareFactory-Regular.ttf](
     https://github.com/Jeremy-Boyle/Shell-Customizer/raw/main/AFCSoftwareFactory-Regular.otf)
 
-Double-click on each file and click "Install". This will make `MesloLGS NF` font available to all
+Double-click on each file and click "Install". This will make `AFC Font` font available to all
 applications on your system. Configure your terminal to use this font:
 
 - **iTerm2**: Type `p10k configure` and answer `Yes` when asked whether to install
