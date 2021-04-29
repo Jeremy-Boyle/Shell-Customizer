@@ -13,7 +13,7 @@ install_zsh () {
     if [[ "$OSTYPE" == "linux-gnu"* ]]; then
         if [ -n "apt" ]; then
             sleep 1
-            echo"Pulling Updates..."
+            echo "Pulling Updates..."
 
             sudo apt-get update -y
             #verify command ran without errors
@@ -48,39 +48,37 @@ install_zsh () {
 }
 
 install_vim () {
-    if [[ "$OSTYPE" == "linux-gnu"* ]]; then
-        if [ -n "apt" ]; then
-            sleep 1
-            echo"Pulling Updates..."
+    if [ -n "apt" ]; then
+        sleep 1
+        echo"Pulling Updates..."
 
-            sudo apt-get update -y
-            #verify command ran without errors
-            if [ $? != 0 ]; then
-                echo "Failed to update packages, check connection !! exiting" && exit
-                elif [ $? == 1 ]; then
-                    echo "Success !"
-                    sleep 2
-                    clear
-                else
-                echo "Not sure what happened" && exit
-            fi
-
-            echo "Installing VIM , Git, Curl..."
-            sleep 2
-
-            sudo apt-get install vim git curl -y
-            #verify command ran without errors
-            if [ $? != 0 ]; then
-                echo "Failed to install vim and git, check connection !! exiting" && exit
-                elif [ $? == 1 ]; then
-                    echo "Success !"
-                    sleep 2
-                    clear
-                else
-                echo "Not sure what happened" && exit
-            fi
-            sleep 2
+        sudo apt-get update -y
+        #verify command ran without errors
+        if [ $? != 0 ]; then
+            echo "Failed to update packages, check connection !! exiting" && exit
+            elif [ $? == 1 ]; then
+                echo "Success !"
+                sleep 2
+                clear
+            else
+            echo "Not sure what happened" && exit
         fi
+
+        echo "Installing VIM , Git, Curl..."
+        sleep 2
+
+        sudo apt-get install vim git curl -y
+        #verify command ran without errors
+        if [ $? != 0 ]; then
+            echo "Failed to install vim and git, check connection !! exiting" && exit
+            elif [ $? == 1 ]; then
+                echo "Success !"
+                sleep 2
+                clear
+            else
+            echo "Not sure what happened" && exit
+        fi
+        sleep 2
     elif [[ "$OSTYPE" == "darwin"* ]]; then
         brew install curl || echo "error" && echo "Installed Curl"
         brew install git || echo "error" && echo "Installed Git"
@@ -100,6 +98,7 @@ install_vim () {
     echo "Downloading last files!"
     curl https://raw.githubusercontent.com/joshdick/onedark.vim/master/autoload/onedark.vim -o ~/.vim/autoload/onedark.vim
     curl https://raw.githubusercontent.com/joshdick/onedark.vim/master/autoload/airline/themes/onedark.vim -o ~/.vim/pack/plugins/start/vim-airline/autoload/airline/themes/onedark.vim
+    sleep 1
 }
 
 install_oh_my_zsh () {
