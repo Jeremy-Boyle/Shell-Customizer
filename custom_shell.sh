@@ -1,4 +1,3 @@
-
 echo "
  ______________________
 |  __________________  |
@@ -13,7 +12,7 @@ install_zsh () {
     if [[ "$OSTYPE" == "linux-gnu"* ]]; then
         sleep 1
         echo "Pulling Updates..."
-        if [ which apt > /dev/null ]; then
+        if which apt > /dev/null; then
             sudo apt-get update -y
             #verify command ran without errors
             if [ $? != 0 ]; then
@@ -43,7 +42,7 @@ install_zsh () {
             touch ~/.zshrc
             sleep 2
         fi
-        if [ which yum > /dev/null ]; then
+        if which yum > /dev/null; then
             sudo yum update -y
             #verify command ran without errors
             if [ $? != 0 ]; then
@@ -92,7 +91,7 @@ install_vim () {
     else
         sleep 1
         echo "Pulling Updates..."
-        if [ which apt > /dev/null ]; then
+        if which apt > /dev/null; then
             sudo apt-get update -y || echo "error" && echo "Updated apt"
 
             echo "Installing VIM , Git, Curl..."
@@ -101,7 +100,7 @@ install_vim () {
             sudo apt-get install vim git curl -y || echo "error" && echo "Installed Git and Curl"
             sleep 2
         fi
-        if [ which yum > /dev/null ]; then
+        if which yum > /dev/null; then
             sudo yum update -y || echo "error" && echo "Updated yum"
 
             echo "Installing VIM , Git, Curl..."
@@ -192,14 +191,14 @@ install_oh_my_zsh () {
     # Install git
     isntall_git(){
         if [[ "$OSTYPE" == "linux-gnu"* ]]; then
-            if [ which apt > /dev/null ]; then
+            if which apt > /dev/null; then
                 sudo apt-get install git -y || echo "error" && echo "Installed"
-            if
-            if [ which yum > /dev/null ]; then
+            fi
+            if which yum > /dev/null; then
                 sudo yum install git -y || echo "error" && echo "Installed"
-            if
+            fi
         fi
-        elif [[ "$OSTYPE" == "darwin"* ]]; then
+        if [[ "$OSTYPE" == "darwin"* ]]; then
             brew install git || echo "error" && echo "Installed"
         fi
     }
@@ -207,13 +206,14 @@ install_oh_my_zsh () {
     # Install curl
     isntall_curl(){
         if [[ "$OSTYPE" == "linux-gnu"* ]]; then
-            if [ which apt > /dev/null ]; then
+            if which apt > /dev/null; then
             sudo apt-get install curl -y || echo "error" && echo "Installed"
-            if
-            if [ which yum > /dev/null ]; then
+            fi
+            if which yum > /dev/null; then
                 sudo yum install curl -y || echo "error" && echo "Installed"
-            if
-        elif [[ "$OSTYPE" == "darwin"* ]]; then
+            fi
+        fi
+        if [[ "$OSTYPE" == "darwin"* ]]; then
             brew install curl || echo "error" && echo "Installed"
         fi
     }
