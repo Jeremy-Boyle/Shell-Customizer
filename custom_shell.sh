@@ -63,7 +63,7 @@ install_zsh () {
             #verify command ran without errors
             if [ $? != 0 ]; then
                 echo "Failed to install zsh, check connection !! exiting" && exit
-                elif [[ $? == 1 ]; then
+                elif [ $? == 1 ]; then
                     echo "Success !"
                     sleep 2
                     clear
