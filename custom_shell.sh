@@ -1,5 +1,5 @@
 
-echo " 
+echo "
  ______________________
 |  __________________  |
 | | Shell Customizer | |
@@ -13,35 +13,66 @@ install_zsh () {
     if [[ "$OSTYPE" == "linux-gnu"* ]]; then
         sleep 1
         echo "Pulling Updates..."
+        if [ which apt > /dev/null ]; then
+            sudo apt-get update -y
+            #verify command ran without errors
+            if [ $? != 0 ]; then
+                echo "Failed to update packages, check connection !! exiting" && exit
+                elif [ $? == 1 ]; then
+                    echo "Success !"
+                    sleep 2
+                    clear
+                else
+                echo "Not sure what happened" && exit
+            fi
 
-        sudo apt-get update -y
-        #verify command ran without errors
-        if [ $? != 0 ]; then
-            echo "Failed to update packages, check connection !! exiting" && exit
-            elif [ $? == 1 ]; then
-                echo "Success !"
-                sleep 2
-                clear
-            else
-            echo "Not sure what happened" && exit
+            echo "Installing ZSH..."
+            sleep 2
+
+            sudo apt-get install zsh -y
+            #verify command ran without errors
+            if [ $? != 0 ]; then
+                echo "Failed to install zsh, check connection !! exiting" && exit
+                elif [[ $? == 1 ]; then
+                    echo "Success !"
+                    sleep 2
+                    clear
+                else
+                echo "Not sure what happened" && exit
+            fi
+            touch ~/.zshrc
+            sleep 2
         fi
+        if [ which yum > /dev/null ]; then
+            sudo yum update -y
+            #verify command ran without errors
+            if [ $? != 0 ]; then
+                echo "Failed to update packages, check connection !! exiting" && exit
+                elif [ $? == 1 ]; then
+                    echo "Success !"
+                    sleep 2
+                    clear
+                else
+                echo "Not sure what happened" && exit
+            fi
 
-        echo "Installing ZSH..."
-        sleep 2
+            echo "Installing ZSH..."
+            sleep 2
 
-        sudo apt-get install zsh -y
-        #verify command ran without errors
-        if [ $? != 0 ]; then
-            echo "Failed to install zsh, check connection !! exiting" && exit
-            elif [ $? == 1 ]; then
-                echo "Success !"
-                sleep 2
-                clear
-            else
-            echo "Not sure what happened" && exit
+            sudo yum install zsh -y
+            #verify command ran without errors
+            if [ $? != 0 ]; then
+                echo "Failed to install zsh, check connection !! exiting" && exit
+                elif [[ $? == 1 ]; then
+                    echo "Success !"
+                    sleep 2
+                    clear
+                else
+                echo "Not sure what happened" && exit
+            fi
+            touch ~/.zshrc
+            sleep 2
         fi
-        touch ~/.zshrc
-        sleep 2
     fi
 }
 
@@ -61,14 +92,24 @@ install_vim () {
     else
         sleep 1
         echo "Pulling Updates..."
+        if [ which apt > /dev/null ]; then
+            sudo apt-get update -y || echo "error" && echo "Updated apt"
 
-        sudo apt-get update -y || echo "error" && echo "Updated apt"
+            echo "Installing VIM , Git, Curl..."
+            sleep 2
 
-        echo "Installing VIM , Git, Curl..."
-        sleep 2
+            sudo apt-get install vim git curl -y || echo "error" && echo "Installed Git and Curl"
+            sleep 2
+        fi
+        if [ which yum > /dev/null ]; then
+            sudo yum update -y || echo "error" && echo "Updated yum"
 
-        sudo apt-get install vim git curl -y || echo "error" && echo "Installed Git and Curl"
-        sleep 2
+            echo "Installing VIM , Git, Curl..."
+            sleep 2
+
+            sudo yum install vim git curl -y || echo "error" && echo "Installed Git and Curl"
+            sleep 2
+        fi
     fi
     echo "Making dirs.."
     mkdir ~/.vim ~/.vim/colors ~/.vim/autoload
@@ -151,7 +192,13 @@ install_oh_my_zsh () {
     # Install git
     isntall_git(){
         if [[ "$OSTYPE" == "linux-gnu"* ]]; then
-            sudo apt-get install git -y || echo "error" && echo "Installed"
+            if [ which apt > /dev/null ]; then
+                sudo apt-get install git -y || echo "error" && echo "Installed"
+            if
+            if [ which yum > /dev/null ]; then
+                sudo yum install git -y || echo "error" && echo "Installed"
+            if
+        fi
         elif [[ "$OSTYPE" == "darwin"* ]]; then
             brew install git || echo "error" && echo "Installed"
         fi
@@ -160,7 +207,12 @@ install_oh_my_zsh () {
     # Install curl
     isntall_curl(){
         if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+            if [ which apt > /dev/null ]; then
             sudo apt-get install curl -y || echo "error" && echo "Installed"
+            if
+            if [ which yum > /dev/null ]; then
+                sudo yum install curl -y || echo "error" && echo "Installed"
+            if
         elif [[ "$OSTYPE" == "darwin"* ]]; then
             brew install curl || echo "error" && echo "Installed"
         fi
@@ -191,7 +243,7 @@ install_oh_my_zsh () {
             esac
         done
     }
-    
+
     if [[ "$OSTYPE" == "darwin"* ]]; then
         command_exists brew || {
             fmt_error "brew is not installed, please install it first"
@@ -403,7 +455,7 @@ EOF
     printf %s "$RESET"
     #Check if the os is mac and add
     if [[ "$OSTYPE" == "darwin"* ]]; then
-        sed -i '' -e 's/(git)/(zsh-syntax-highlighting zsh-completions git kubectl aws brew docker history osx)/g' ~/.zshrc
+        sed -i '' -e 's/(git)/(zsh-syntax-highlighting zsh-completions git kubectl aws brew docker history macosx)/g' ~/.zshrc
     else
         sed -i 's/(git)/(zsh-syntax-highlighting zsh-completions git kubectl aws docker history)/g' ~/.zshrc
     fi
@@ -429,7 +481,7 @@ EOF
             [Nn]* ) echo "Okay ill let you set it up!"; break;;
             * ) echo "Please answer yes or no.";;
         esac
-    done    
+    done
     exec zsh -l
 }
     main "$@"
@@ -437,7 +489,7 @@ EOF
 
 if [ -n "$BASH_VERSION" ]; then
     # assume Bash
-    if [[ "$OSTYPE" != "darwin"* ]];then    
+    if [[ "$OSTYPE" != "darwin"* ]];then
         while true; do
             echo ""
             read -p "Hello $username would like to install zsh? y/n: " yn
