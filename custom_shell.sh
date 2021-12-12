@@ -72,6 +72,36 @@ install_zsh () {
             touch ~/.zshrc
             sleep 2
         fi
+        if which pacman > /dev/null; then
+            sudo pacman -Syu
+            #verify command ran without errors
+            if [ $? != 0 ]; then
+                echo "Failed to update packages, check connection !! exiting" && exit
+                elif [ $? == 1 ]; then
+                    echo "Success !"
+                    sleep 2
+                    clear
+                else
+                echo "Not sure what happened" && exit
+            fi
+
+            echo "Installing ZSH..."
+            sleep 2
+
+            sudo pacman -Syy zsh
+            #verify command ran without errors
+            if [ $? != 0 ]; then
+                echo "Failed to install zsh, check connection !! exiting" && exit
+                elif [ $? == 1 ]; then
+                    echo "Success !"
+                    sleep 2
+                    clear
+                else
+                echo "Not sure what happened" && exit
+            fi
+            touch ~/.zshrc
+            sleep 2
+        fi
     fi
 }
 
@@ -107,6 +137,15 @@ install_vim () {
             sleep 2
 
             sudo yum install vim git curl -y || echo "error" && echo "Installed Git and Curl"
+            sleep 2
+        fi
+        if which pacman > /dev/null; then
+            sudo pacman -Sy || echo "error" && echo "Updated pacman"
+
+            echo "Installing VIM , Git, Curl..."
+            sleep 2
+
+            sudo pacman -Syy vim git curl|| echo "error" && echo "Installed Git and Curl"
             sleep 2
         fi
     fi
@@ -197,6 +236,9 @@ install_oh_my_zsh () {
             if which yum > /dev/null; then
                 sudo yum install git -y || echo "error" && echo "Installed"
             fi
+            if which pacman > /dev/null; then
+                sudo pacman -Syy git|| echo "error" && echo "Installed"
+            fi
         fi
         if [[ "$OSTYPE" == "darwin"* ]]; then
             brew install git || echo "error" && echo "Installed"
@@ -211,6 +253,9 @@ install_oh_my_zsh () {
             fi
             if which yum > /dev/null; then
                 sudo yum install curl -y || echo "error" && echo "Installed"
+            fi
+            if which pacman > /dev/null; then
+                sudo pacman -Syy curl || echo "error" && echo "Installed"
             fi
         fi
         if [[ "$OSTYPE" == "darwin"* ]]; then
