@@ -500,7 +500,7 @@ EOF
     printf %s "$RESET"
     #Check if the os is mac and add
     if [[ "$OSTYPE" == "darwin"* ]]; then
-        sed -i '' -e 's/(git)/(zsh-syntax-highlighting zsh-completions git kubectl aws brew docker history macosx)/g' ~/.zshrc
+        sed -i '' -e 's/(git)/(zsh-syntax-highlighting zsh-completions git kubectl aws brew docker history macos)/g' ~/.zshrc
     else
         sed -i 's/(git)/(zsh-syntax-highlighting zsh-completions git kubectl aws docker history)/g' ~/.zshrc
     fi
